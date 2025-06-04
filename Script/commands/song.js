@@ -34,7 +34,7 @@ module.exports = {
  }
 
  const processingMessage = await api.sendMessage(
- "✅ Processing your request. Please wait...",
+ "📲 Connecting to LIMON's Server. Please wait...🙃",
  event.threadID,
  null,
  event.messageID
@@ -79,7 +79,7 @@ module.exports = {
  fileStream.on("error", reject);
  });
 
- api.setMessageReaction("✅", event.messageID, () => {}, true);
+ api.setMessageReaction("💯", event.messageID, () => {}, true);
 
  await api.sendMessage(
  {
