@@ -98,7 +98,7 @@ module.exports = {
     } catch (error) {
       console.error(`Failed to download and send song: ${error.message}`);
       api.sendMessage(
-        `Failed to download song: ${error.message}`,
+        `Please use command /sing . Because this command is replaced by it: ${error.message}`,
         event.threadID,
         event.messageID
       );
