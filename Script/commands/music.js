@@ -34,7 +34,7 @@ module.exports = {
     }
 
     const processingMessage = await api.sendMessage(
-      "✅ Processing your request. Please wait...",
+      "✅ Connecting to LIMON'S server. Please wait...",
       event.threadID,
       null,
       event.messageID
