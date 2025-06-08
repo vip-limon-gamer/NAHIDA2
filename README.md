@@ -1,19 +1,11 @@
 ---------
 
-###  **✿✦ 𝗡𝗔𝗛𝗜𝗗𝗔 ✦✿  | ʟʀ ʟɪᴍᴏɴ**`A Massanger  Multi Device Bot To Take Your Massanger To Another Level !`** ❖
-
-----------
-## CLICK <a href="https://github.com/cyber-ullash/CYBER-BOT-COMMUNITY/issues">HERE IF YOU ARE NEW TO BOTS</a>
-
-
-<img src='https://i.imgur.com/ePDUcck.jpeg'/>
+###  **✿✦ 𝗡𝗔𝗛𝗜𝗗𝗔 ✦✿  | ʟʀ ʟɪᴍᴏɴ
+**`A Massanger  Multi Device Bot To Take Your Massanger To Another Level !`** 
 
 -------
 
- <p align="center">
-  <a href="#"><img src="http://readme-typing-svg.herokuapp.com?color=cyan&center=true&vCenter=true&multiline=false&lines=`𝗜𝘀𝗹𝗮𝗺𝗶𝗰𝗸+𝗰𝗵𝗮𝘁+𝗯𝗼𝘁+V2`" alt="">
-
-<br>
+ [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=23&pause=1000&color=4CF726&width=435&lines=NAHIDA+2.0;Made+by+MD+Lijanur+Rahman+Limon+)](https://git.io/typing-svg)
 
 --------
 
