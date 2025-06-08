@@ -7,21 +7,6 @@
 
  [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=23&pause=1000&color=4CF726&width=435&lines=NAHIDA+2.0;Made+by+MD+Lijanur+Rahman+Limon+)](https://git.io/typing-svg)
 
---------
-
-<p align="center">
-<a href="https://github.com/cyber-ullash/"><img title="Followers" src="https://img.shields.io/github/followers/cyber-ullash?color=blue&style=flat-square"></a>
-<a href="https://github.com/cyber-ullash/CYBER-BOT-COMMUNITY/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/cyber-ullash/CYBER-BOT-COMMUNITY/?color=blue&style=flat-square"></a>
-<a href="https://github.com/cyber-ullash/CYBER-BOT-COMMUNITY/network/members"><img title="Forks" src="https://img.shields.io/github/forks/cyber-ullash/CYBER-BOT-COMMUNITY?color=blue&style=flat-square"></a>
-<a href="https://github.com/cyber-ullash/CYBER-BOT-COMMUNITY/"><img title="Size" src="https://img.shields.io/github/repo-size/cyber-ullash/CYBER-BOT-COMMUNITY?style=flat-square&color=blue"></a>
-<a href="https://github.com/cyber-ullash/CYBER-BOT-COMMUNITY/graphs/commit-activity"><img height="20" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>&nbsp;&nbsp;
-</p>
-<p align='center'>
-</p>
-
------------
-<div align="center"><br> <img src="https://profile-counter.glitch.me/SILENT-SOBX-MD/count.svg" /><br>—͟͟͞͞𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️</div>
-
 ------------
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
