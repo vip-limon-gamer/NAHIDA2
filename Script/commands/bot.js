@@ -65,7 +65,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
    }; 
 
   if ((event.body.toLowerCase() == "admin") || (event.body.toLowerCase() == "boter admin")) {
-     return api.sendMessage("He is Limon❤️ তার সম্পর্কে আরও জানতে ${global.config.PREFIX}admin টাইপ করুন 🥰", threadID);
+     return api.sendMessage("He is Limon❤️ তার সম্পর্কে আরও জানতে /admin টাইপ করুন 🥰", threadID);
    }; 
 
    if ((event.body.toLowerCase() == "ai") || (event.body.toLowerCase() == "Ai")) {
@@ -186,7 +186,7 @@ if ((event.body.toLowerCase() == "Akram") || (event.body.toLowerCase() == "আ�
    }; 
 
    if ((event.body.toLowerCase() == "Limon") || (event.body.toLowerCase() == "limon") || (event.body.toLowerCase() == "লিমন")) {
-     return api.sendMessage(" Type ${global.config.PREFIX}admin to know about him <😘", threadID);
+     return api.sendMessage(" Type /admin to know about him <😘", threadID);
    }; 
 
 if ((event.body.toLowerCase() == "tumi khaiso") || (event.body.toLowerCase() == "khaicho")) {
