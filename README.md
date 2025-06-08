@@ -1,7 +1,6 @@
 ---------
 
-###  —͟͟͞͞𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️
-❖ **`A Massanger  Multi Device Bot To Take Your Massanger To Another Level !`** ❖
+###  ✿✦ 𝗡𝗔𝗛𝗜𝗗𝗔 ✦✿  | ʟʀ ʟɪᴍᴏɴ**`A Massanger  Multi Device Bot To Take Your Massanger To Another Level !`** ❖
 
 ----------
 ## CLICK <a href="https://github.com/cyber-ullash/CYBER-BOT-COMMUNITY/issues">HERE IF YOU ARE NEW TO BOTS</a>
