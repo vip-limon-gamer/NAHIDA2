@@ -39,7 +39,7 @@ ________________________\n\n𝐓𝐨 𝐯𝐢𝐞𝐰 𝐚𝐧𝐲 𝐜𝐨𝐦�
 ${global.config.PREFIX}Help\n${global.config.PREFIX} Manu\n${global.config.PREFIX} admin ( for admin / creator info ) 
 
 ✿✦ 𝗡𝗔𝗛𝗜𝗗𝗔 ✦✿  | ʟʀ ʟɪᴍᴏɴ
-\n\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
+\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
 `, attachment: fs.createReadStream(__dirname + "/cache/20250604_204103.gif")} ,threadID));
     }
     else {
@@ -82,4 +82,4 @@ ${global.config.PREFIX}Help\n${global.config.PREFIX} Manu\n${global.config.PREFI
             return api.sendMessage(formPush, threadID);
         } catch (e) { return console.log(e) };
     }
-  }
+    }
