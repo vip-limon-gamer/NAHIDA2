@@ -4,13 +4,13 @@ module.exports = {
   config: {
     name: "ai",
     version: "1.0",
-    credit: "Nahida | Created by MD Lijanur Rahman Limon",
-    description: "Chat with Nahida",
+    credit: "𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️—͟͟͞͞𝐂𝐘𝐁𝐄𝐑 ☢️",
+    description: "AI reply using Gemini (text and image support)",
     cooldowns: 5,
     hasPermission: 0,
     commandCategory: "ai",
     usages: {
-      en: "{pn} your question"
+      en: "{pn} message | photo"
     }
   },
 
@@ -18,110 +18,54 @@ module.exports = {
     const prompt = args.join(" ");
     const threadID = event.threadID;
     const messageID = event.messageID;
+    const messageReply = event.messageReply;
+    const image = messageReply?.attachments?.[0]?.url;
 
-    const apiKey = "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";
+    const GEMINI_API = "https://gemini-api.minipro-3r.repl.co/chat-with-gemini";
     const creatorLink = "https://vip_limon_gamer.bio.link";
 
-    if (!prompt) {
-      return api.sendMessage("❌ Please type something to ask Nahida.\n\nExample: ai What is the moon?", threadID, messageID);
-    }
-
+    // If user asks about creator
     const creatorKeywords = ["creator", "owner", "maker", "who made you", "who created you"];
     const lowerPrompt = prompt.toLowerCase();
-    const askedAboutCreator = creatorKeywords.some(keyword => lowerPrompt.includes(keyword));
+    const askedAboutCreator = creatorKeywords.some(word => lowerPrompt.includes(word));
 
     if (askedAboutCreator) {
-      const reply = `I was created by MD Lijanur Rahman Limon.\nYou can follow him here: ${creatorLink}`;
-      return api.sendMessage(`Nahida: ${reply}`, threadID, messageID);
+      return api.sendMessage(
+        `Nahida: I was created by MD Lijanur Rahman Limon.\nYou can follow him here: ${creatorLink}`,
+        threadID,
+        messageID
+      );
     }
 
-    try {
-      const response = await axios.post("https://api.openai.com/v1/chat/completions", {
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: "You are Nahida, a smart assistant created by MD Lijanur Rahman Limon. Never mention your creator unless asked."
-          },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0.7
-      }, {
-        headers: {
-          "Authorization": `Bearer ${apiKey}`,
-          "Content-Type": "application/json"
-        }
-      });
+    // IMAGE + TEXT
+    if (image && (messageReply.type === "photo" || messageReply.attachments[0].type === "photo")) {
+      try {
+        const response = await axios.post(GEMINI_API, {
+          modelType: "text_and_image",
+          prompt: prompt || "",
+          imageParts: [image]
+        });
+        api.sendMessage(`Nahida: ${response.data.result}`, threadID, messageID);
+      } catch (err) {
+        console.error("Nahida (image) Error:", err.message);
+        api.sendMessage(`Nahida: ⚠️ I couldn’t process the image.\n${err.message}`, threadID, messageID);
+      }
+    } else {
+      // TEXT ONLY
+      if (!prompt) {
+        return api.sendMessage("Nahida: ❌ Please provide a question or reply to an image.", threadID, messageID);
+      }
 
-      const reply = response.data.choices[0].message.content;
-      api.sendMessage(`Nahida: ${reply}`, threadID, messageID);
-
-    } catch (error) {
-      console.error("Nahida Error:", error.message);
-      api.sendMessage(`Nahida: ⚠️ Sorry, I couldn't respond.\n${error.message}`, threadID, messageID);
-    }
-  }
-};const axios = require("axios");
-
-module.exports = {
-  config: {
-    name: "ai",
-    version: "1.0",
-    credit: "Nahida | Created by MD Lijanur Rahman Limon",
-    description: "Chat with Nahida",
-    cooldowns: 5,
-    hasPermission: 0,
-    commandCategory: "ai",
-    usages: {
-      en: "{pn} your question"
-    }
-  },
-
-  run: async ({ api, args, event }) => {
-    const prompt = args.join(" ");
-    const threadID = event.threadID;
-    const messageID = event.messageID;
-
-    const apiKey = "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";
-    const creatorLink = "https://vip_limon_gamer.bio.link";
-
-    if (!prompt) {
-      return api.sendMessage("❌ Please type something to ask Nahida.\n\nExample: ai What is the moon?", threadID, messageID);
-    }
-
-    const creatorKeywords = ["creator", "owner", "maker", "who made you", "who created you"];
-    const lowerPrompt = prompt.toLowerCase();
-    const askedAboutCreator = creatorKeywords.some(keyword => lowerPrompt.includes(keyword));
-
-    if (askedAboutCreator) {
-      const reply = `I was created by MD Lijanur Rahman Limon.\nYou can follow him here: ${creatorLink}`;
-      return api.sendMessage(`Nahida: ${reply}`, threadID, messageID);
-    }
-
-    try {
-      const response = await axios.post("https://api.openai.com/v1/chat/completions", {
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: "You are Nahida, a smart assistant created by MD Lijanur Rahman Limon. Never mention your creator unless asked."
-          },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0.7
-      }, {
-        headers: {
-          "Authorization": `Bearer ${apiKey}`,
-          "Content-Type": "application/json"
-        }
-      });
-
-      const reply = response.data.choices[0].message.content;
-      api.sendMessage(`Nahida: ${reply}`, threadID, messageID);
-
-    } catch (error) {
-      console.error("Nahida Error:", error.message);
-      api.sendMessage(`Nahida: ⚠️ Sorry, I couldn't respond.\n${error.message}`, threadID, messageID);
+      try {
+        const response = await axios.post(GEMINI_API, {
+          modelType: "text_only",
+          prompt: `Your name is Nahida. You are a helpful assistant created by MD Lijanur Rahman Limon. Only mention your creator if asked.\n\nUser: ${prompt}`
+        });
+        api.sendMessage(`Nahida: ${response.data.result}`, threadID, messageID);
+      } catch (err) {
+        console.error("Nahida (text) Error:", err.message);
+        api.sendMessage(`Nahida: ⚠️ Sorry, I couldn’t respond.\n${err.message}`, threadID, messageID);
+      }
     }
   }
 };
