@@ -5,7 +5,7 @@
     "autoCreateDB": true,
     "notiGroup": true,
     "NOTIFICATION": true,
-    "allowInbox": true,
+    "allowInbox": false,
     "autoClean": true,
     "commandDisabled": [
         "sim.js"
