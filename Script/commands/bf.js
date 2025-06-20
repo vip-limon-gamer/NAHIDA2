@@ -1,99 +1,74 @@
-const axios = require('axios');
-const fs = require('fs-extra');
-const path = require('path');
-const jimp = require('jimp');
-
 module.exports.config = {
-  name: "bf",
-  version: "1.0",
-  hasPermssion: 0,
-  credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴",
-  description: "Get Pair From Mention",
-  commandCategory: "fun",
-  usages: "bf @mention",
-  cooldowns: 5,
-  dependencies: {
-    "axios": "",
-    "fs-extra": "",
-    "path": "",
-    "jimp": ""
-  }
+    name: "bf",
+    version: "7.3.1",
+    hasPermssion: 0,
+    credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️", 
+    description: "Get Pair From Mention",
+    commandCategory: "img",
+    usages: "[@mention]",
+    cooldowns: 5, 
+    dependencies: {
+        "axios": "",
+        "fs-extra": "",
+        "path": "",
+        "jimp": ""
+    }
 };
 
-module.exports.onLoad = async () => {
-  const templatePath = path.join(__dirname, 'cache/canvas');
-  const templateImg = path.resolve(__dirname, 'cache/canvas/arr2.png');
-  const imageURL = 'https://i.imgur.com/iaOiAXe.jpg';
-
-  if (!fs.existsSync(templatePath)) {
-    fs.mkdirSync(templatePath, { recursive: true });
-  }
-
-  if (!fs.existsSync(templateImg)) {
-    const response = await axios.get(imageURL, { responseType: 'arraybuffer' });
-    fs.writeFileSync(templateImg, Buffer.from(response.data, 'utf-8'));
-  }
-};
+module.exports.onLoad = async() => {
+    const { resolve } = global.nodemodule["path"];
+    const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
+    const { downloadFile } = global.utils;
+    const dirMaterial = __dirname + `/cache/canvas/`;
+    const path = resolve(__dirname, 'cache/canvas', 'arr2.png');
+    if (!existsSync(dirMaterial + "canvas")) mkdirSync(dirMaterial, { recursive: true });
+    if (!existsSync(path)) await downloadFile("https://i.imgur.com/iaOiAXe.jpeg", path); 
+}
 
 async function makeImage({ one, two }) {
-  const canvasPath = path.join(__dirname, 'cache/canvas');
-  const bgPath = path.join(canvasPath, 'arr2.png');
+    const fs = global.nodemodule["fs-extra"];
+    const path = global.nodemodule["path"];
+    const axios = global.nodemodule["axios"]; 
+    const jimp = global.nodemodule["jimp"];
+    const __root = path.resolve(__dirname, "cache", "canvas");
 
-  const pathImg = path.join(canvasPath, `avt_${one}_${two}.png`);
-  const avatarOnePath = path.join(canvasPath, `avt_${one}.png`);
-  const avatarTwoPath = path.join(canvasPath, `avt_${two}.png`);
-
-  const bg = await jimp.read(bgPath);
-
-  const avatarOneData = (await axios.get(`https://graph.facebook.com/${one}/picture?width=512&height=512&access_token=6628568205592211|379%7Cc1e6a1bde566220fa708a15696fb991c`, {
-    responseType: 'arraybuffer'
-  })).data;
-  fs.writeFileSync(avatarOnePath, Buffer.from(avatarOneData, 'utf-8'));
-
-  const avatarTwoData = (await axios.get(`https://graph.facebook.com/${two}/picture?width=512&height=512&access_token=6628568205592211|379%7Cc1e6a1bde566220fa708a15696fb991c`, {
-    responseType: 'arraybuffer'
-  })).data;
-  fs.writeFileSync(avatarTwoPath, Buffer.from(avatarTwoData, 'utf-8'));
-
-  const avatarOne = await circle(avatarOnePath);
-  const avatarTwo = await circle(avatarTwoPath);
-
-  bg.composite(avatarOne.resize(128, 128), 90, 120);
-  bg.composite(avatarTwo.resize(128, 128), 390, 120);
-
-  const finalImage = await bg.getBufferAsync('image/png');
-
-  fs.writeFileSync(pathImg, finalImage);
-  fs.unlinkSync(avatarOnePath);
-  fs.unlinkSync(avatarTwoPath);
-
-  return pathImg;
+    let batgiam_img = await jimp.read(__root + "/arr2.png");
+    let pathImg = __root + `/batman${one}_${two}.png`;
+    let avatarOne = __root + `/avt_${one}.png`;
+    let avatarTwo = __root + `/avt_${two}.png`;
+    
+    let getAvatarOne = (await axios.get(`https://graph.facebook.com/${one}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: 'arraybuffer' })).data;
+    fs.writeFileSync(avatarOne, Buffer.from(getAvatarOne, 'utf-8'));
+    
+    let getAvatarTwo = (await axios.get(`https://graph.facebook.com/${two}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: 'arraybuffer' })).data;
+    fs.writeFileSync(avatarTwo, Buffer.from(getAvatarTwo, 'utf-8'));
+    
+    let circleOne = await jimp.read(await circle(avatarOne));
+    let circleTwo = await jimp.read(await circle(avatarTwo));
+    batgiam_img.composite(circleOne.resize(200, 200), 70, 110).composite(circleTwo.resize(200, 200), 465, 110);
+    
+    let raw = await batgiam_img.getBufferAsync("image/png");
+    
+    fs.writeFileSync(pathImg, raw);
+    fs.unlinkSync(avatarOne);
+    fs.unlinkSync(avatarTwo);
+    
+    return pathImg;
+}
+async function circle(image) {
+    const jimp = require("jimp");
+    image = await jimp.read(image);
+    image.circle();
+    return await image.getBufferAsync("image/png");
 }
 
-async function circle(imagePath) {
-  const img = await jimp.read(imagePath);
-  img.circle();
-  return img.getBufferAsync('image/png');
+module.exports.run = async function ({ event, api, args }) {    
+    const fs = global.nodemodule["fs-extra"];
+    const { threadID, messageID, senderID } = event;
+    const mention = Object.keys(event.mentions);
+    if (!mention[0]) return api.sendMessage("Please mention 1 person.", threadID, messageID);
+    else {
+        const one = senderID, two = mention[0];
+        return makeImage({ one, two }).then(path => api.sendMessage({ body: "✿┈┈┈┈༺♡༻┈┈┈┈✿\n✿✦ 𝗡𝗔𝗛𝗜𝗗𝗔 ✦✿  | ʟʀ ʟɪᴍᴏɴ\n✿┈┈┈┈༺♡༻┈┈┈┈✿\n", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
+    }
 }
-
-module.exports.run = async function ({ event, api, args }) {
-  const { threadID, messageID, senderID, mentions } = event;
-  const mentionIDs = Object.keys(mentions);
-
-  if (mentionIDs.length === 0) {
-    return api.sendMessage("Please mention 1 person.", threadID, messageID);
-  }
-
-  const one = senderID;
-  const two = mentionIDs[0];
-
-  makeImage({ one, two }).then(pathImg => {
-    api.sendMessage({
-      body:
-        "✿┈┈┈┈༺♡༻┈┈┈┈✿\n
-✿✦ 𝗡𝗔𝗛𝗜𝗗𝗔 ✦✿  | ʟʀ ʟɪᴍᴏɴ\n
-✿┈┈┈┈༺♡༻┈┈┈┈✿",
-      attachment: fs.createReadStream(pathImg)
-    }, threadID, () => fs.unlinkSync(pathImg), messageID);
-  });
-};
